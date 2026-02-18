@@ -1,0 +1,11 @@
+/* Optional global reset/tokens for apps that import this. */
+:root {
+  --nekkus-primary: #3574d4;
+  --nekkus-bg: #0f1117;
+  --nekkus-surface: #1e2129;
+  --nekkus-border: #2d323d;
+  --nekkus-text: #e6e8ec;
+  --nekkus-text-muted: #9ca3af;
+  --nekkus-radius-md: 8px;
+  --nekkus-spacing-md: 16px;
+}
