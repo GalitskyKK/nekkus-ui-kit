@@ -12,9 +12,16 @@
       "require": "./dist/nekkus-ui-kit.umd.cjs",
       "types": "./dist/index.d.ts"
     },
-    "./theme.css": "./dist/theme.css"
+    "./theme.css": {
+      "import": "./dist/theme.css",
+      "require": "./dist/theme.css",
+      "default": "./dist/theme.css"
+    }
   },
-  "files": ["dist", "src"],
+  "files": [
+    "dist",
+    "src"
+  ],
   "scripts": {
     "build": "vite build",
     "dev": "vite build --watch",
