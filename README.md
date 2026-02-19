@@ -1,66 +1,101 @@
 # @nekkus/ui-kit
 
-Общая библиотека React-компонентов для приложений экосистемы Nekkus (Hub, Net, Eye, Gate и др.).
+Общая библиотека React-компонентов для экосистемы Nekkus (Hub, Net, Eye, Gate и др.). Стиль по **Nekkus UI/UX Design Guide**: mission control, тёмная тема, слои фона, модульные акценты, типографика Inter + JetBrains Mono.
 
-## Что сделать сначала
+### Философия
 
-1. **Создать репозиторий на GitHub**  
-   Создай пустой репозиторий, например `nekkus-ui-kit` (можно с README и .gitignore или полностью пустой).
+- **Не системная утилита** — интерфейс как продукт за $20/мес, который получаешь бесплатно.
+- **Тёмная тема** — основа (Layer 0: `#0A0A0F`), не опция.
+- **Глубина без теней** — слои (Layer 0→1→2→3), тонкие границы (`#1E1E2E`, hover `#2E2E4E`).
+- **Модульные цвета** точечно: кнопки, полоска карточки, графики, бейджи (Net, Eye, Gate, Port, Vault, Sync, Clip, Hub).
+- **Типографика**: UI — Inter/Geist Sans; данные/метрики — JetBrains Mono/Geist Mono.
+- **Screenshot test** — каждый экран должен вызывать желание заскринить и поделиться.
 
-2. **Локальная разработка**  
-   Клонируй репу в общую папку рядом с hub/net:
-   ```bash
-   cd E:/1frontend/Practice/Golang/nekkus   # или твоя корневая папка nekkus
-   git clone https://github.com/GalitskyKK/nekkus-ui-kit.git
-   cd nekkus-ui-kit
-   npm install
-   npm run build
-   ```
+### Токены (theme.ts + Tailwind)
 
-3. **Подключить в Hub/Net**  
-   В `nekkus-hub/frontend` и `nekkus-net/frontend` в `package.json`:
-   ```json
-   "@nekkus/ui-kit": "file:../../nekkus-ui-kit"
-   ```
-   Затем `npm install` в каждом фронтенде.
+| Назначение | Значения |
+|------------|----------|
+| Слои фона | Layer 0 `#0A0A0F`, 1 `#12121A`, 2 `#1A1A2E`, 3 `#232340` |
+| Границы | default `#1E1E2E`, hover `#2E2E4E` |
+| Модули | net `#3B82F6`, eye `#10B981`, gate `#EF4444`, port `#8B5CF6`, vault `#F59E0B`, sync `#06B6D4`, clip `#EC4899`, hub `#64748B` |
+| Статусы | success `#10B981`, warning `#F59E0B`, error `#EF4444`, info `#3B82F6`, muted `#475569` |
+| Радиусы | sm 6px, md 8px, lg 10px, card 14px |
 
-   После публикации на npm можно перейти на версию:
-   ```json
-   "@nekkus/ui-kit": "^0.1.0"
-   ```
+### Стек
+
+- **Tailwind CSS** — тема в `tailwind.config.js` (слои, границы, модульные цвета, шрифты, радиусы, тени).
+- **Radix UI** — примитивы (Select и др., по необходимости).
+- **Lucide Icons** — иконки (опционально в Button).
+- **Recharts/D3** — в приложениях; в ките — простой bar Chart.
+
+## Как это работает (репы по отдельности на GitHub)
+
+- В `nekkus-hub/frontend` и `nekkus-net/frontend` в `package.json`:  
+  `"@nekkus/ui-kit": "github:GalitskyKK/nekkus-ui-kit#main"`.  
+  При `npm install` ui-kit ставится с GitHub. Для фикса версии: `#v0.1.0`.
+
+- **Локальная разработка** (все репы в одной папке): в `nekkus-ui-kit` — `npm run build` и `npm link`; в hub/net frontend — `npm link @nekkus/ui-kit`. После правок в ui-kit снова `npm run build` в ui-kit.
 
 ## Установка
 
 ```bash
 npm install @nekkus/ui-kit
-# или для локальной разработки:
-# "@nekkus/ui-kit": "file:../../nekkus-ui-kit"
+# или локально: "@nekkus/ui-kit": "file:../../nekkus-ui-kit"
 ```
 
 ## Использование
 
-```tsx
-import { Button, Card, StatusDot, theme } from "@nekkus/ui-kit";
+В точке входа приложения:
 
-<Button variant="primary">Connect</Button>
-<StatusDot status="online" />
+```tsx
+import "@nekkus/ui-kit/theme.css";
+// Опционально: document.body.classList.add("nekkus-theme");
+// Или обернуть в <PageLayout> — ставит data-nekkus-root и шрифты.
+```
+
+Компоненты:
+
+```tsx
+import { Button, Card, StatusDot, Input, Select, Pill, Chart, theme } from "@nekkus/ui-kit";
+
+<Button variant="primary" accent="net">Connect</Button>
+<Card title="Overview" accentTop="eye">...</Card>
+<StatusDot status="online" label="Online" />
+<Input label="URL" value={url} onChange={e => setUrl(e.target.value)} />
+<Select label="Profile" options={[{ value: "a", label: "A" }]} value={sel} onChange={e => setSel(e.target.value)} />
+<Pill variant="success">Active</Pill>
+<Chart data={[1,2,3]} labels={["a","b","c"]} color={theme.modules.eye} />
 ```
 
 ## Компоненты
 
-- **Button** — кнопка (primary, secondary, ghost)
-- **Card** — карточка контента
-- **Layout** — PageLayout, Section
-- **StatusDot** — индикатор статуса (online, offline, busy, error)
-- **Chart** — обёртка для простых графиков (данные в JSON)
+- **Button** — primary/secondary/ghost/danger, размеры sm/md/large, опционально `accent` (модуль).
+- **Card** — Layer 1, 14px radius, 20px padding, опционально `title`, `accentTop` (полоска сверху).
+- **Layout** — PageLayout, Section.
+- **StatusDot** — online/offline/busy/error; для online — пульс (keyframes nekkus-status-pulse).
+- **Chart** — bar chart; опционально `color` (модульный цвет), иначе Net accent.
+- **Input, Select** — Layer 0, 10px radius, focus ring по акценту.
+- **Pill** — бейдж 11px, 2px 8px, 6px radius (default, success, warning, error).
+- **DataText** — моно для метрик (sm, base, metric).
+- **theme** — объект слоёв, границ, модулей, статусов, радиусов, шрифтов, теней.
 
-## Сборка
+## Сборка и Storybook
 
 ```bash
-npm run build
+npm install && npm run build
+npm run storybook   # http://localhost:6006
+npm run build-storybook   # storybook-static/
 ```
 
-Собирается как библиотека (Vite library mode), выход в `dist/`.
+## Чеклист по гайду (для новых экранов)
+
+- [ ] Тёмная тема, слои и границы по токенам.
+- [ ] Данные в моноширинном шрифте, UI — Inter.
+- [ ] Цвет модуля точечно (кнопка, полоска, график), не заливкой.
+- [ ] Информационная плотность без каши, иерархия: главная метрика → поддержка → детали.
+- [ ] Анимации функциональные (появление, обновление, StatusDot pulse).
+- [ ] Графики плавные, с акцентным цветом и опциональной заливкой.
+- [ ] Screenshot test: хочется заскринить и отправить.
 
 ## Лицензия
 

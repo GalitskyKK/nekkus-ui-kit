@@ -1,11 +1,52 @@
-/* Optional global reset/tokens for apps that import this. */
-:root {
-  --nekkus-primary: #3574d4;
-  --nekkus-bg: #0f1117;
-  --nekkus-surface: #1e2129;
-  --nekkus-border: #2d323d;
-  --nekkus-text: #e6e8ec;
-  --nekkus-text-muted: #9ca3af;
-  --nekkus-radius-md: 8px;
-  --nekkus-spacing-md: 16px;
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Mission control: тёмный фон с лёгким синим подтоном (#0A0A0F) */
+@layer base {
+  [data-nekkus-root],
+  .nekkus-theme {
+    @apply font-sans antialiased text-nekkus-text;
+    background-color: #0A0A0F;
+  }
+}
+
+/* Карточка: Layer 1, тонкая граница, опциональная полоска сверху (модуль), radius 14px по гайду */
+[data-nekkus-card] {
+  @apply relative bg-nekkus-layer-1 border border-nekkus-border p-5;
+  border-radius: 14px;
+}
+[data-nekkus-card][data-accent-top]::before {
+  content: "";
+  @apply absolute left-0 right-0 top-0 h-0.5 z-0 pointer-events-none;
+  border-radius: 14px 14px 0 0;
+  background-color: var(--nekkus-module-color, #3B82F6);
+}
+[data-nekkus-card] > * {
+  @apply relative z-10;
+}
+
+/* Кнопки — focus-visible */
+[data-nekkus-button]:focus-visible {
+  @apply outline-2 outline-offset-2;
+  outline-color: var(--nekkus-module-color, #3B82F6);
+}
+
+/* Поля — focus: граница + ring модульного цвета */
+[data-nekkus-input]:focus,
+[data-nekkus-select]:focus {
+  outline: none;
+  border-color: var(--nekkus-module-color, #3B82F6);
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+}
+
+/* Status dot pulse для active/connected */
+[data-nekkus-status-dot][data-pulse] {
+  animation: nekkus-status-pulse 2s ease-in-out infinite;
+}
+@keyframes nekkus-status-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.4); }
+  70% { box-shadow: 0 0 0 6px rgba(16, 185, 129, 0); }
 }

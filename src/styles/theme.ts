@@ -1,44 +1,49 @@
 /**
- * Nekkus UI theme tokens.
- * Use in CSS variables or inline styles for consistency across Hub, Net, Eye, etc.
+ * Nekkus Design Guide — токены для приложений.
+ * Mission control: слои фона, минимум теней, модульные цвета точечно.
  */
 export const theme = {
-  colors: {
-    primary: "#3574D4",
-    primaryHover: "#2C5FB8",
-    primaryMuted: "rgba(53, 116, 212, 0.15)",
-    background: "#0f1117",
-    backgroundElevated: "#1a1d26",
-    surface: "#1e2129",
-    border: "#2d323d",
-    text: "#e6e8ec",
-    textMuted: "#9ca3af",
-    success: "#22c55e",
-    warning: "#eab308",
-    error: "#ef4444",
-    info: "#3b82f6",
+  layers: {
+    "0": "#0A0A0F",
+    "1": "#12121A",
+    "2": "#1A1A2E",
+    "3": "#232340",
+  },
+  border: {
+    default: "#1E1E2E",
+    hover: "#2E2E4E",
+  },
+  text: {
+    primary: "#E2E8F0",
+    muted: "#94A3B8",
+    dim: "#475569",
+  },
+  modules: {
+    net: "#3B82F6",
+    eye: "#10B981",
+    gate: "#EF4444",
+    port: "#8B5CF6",
+    vault: "#F59E0B",
+    sync: "#06B6D4",
+    clip: "#EC4899",
+    hub: "#FFFFFF",
   },
   status: {
-    online: "#22c55e",
-    offline: "#6b7280",
-    busy: "#eab308",
-    error: "#ef4444",
+    success: "#10B981",
+    warning: "#F59E0B",
+    error: "#EF4444",
+    info: "#3B82F6",
+    muted: "#475569",
   },
-  radius: {
-    sm: "4px",
-    md: "8px",
-    lg: "12px",
-  },
-  spacing: {
-    xs: "4px",
-    sm: "8px",
-    md: "16px",
-    lg: "24px",
-    xl: "32px",
-  },
+  radius: { sm: "6px", md: "8px", lg: "10px", card: "14px" },
   font: {
     sans: '"Inter", system-ui, sans-serif',
     mono: '"JetBrains Mono", "Fira Code", monospace',
+  },
+  shadow: {
+    dropdown: "0 8px 30px rgba(0, 0, 0, 0.5)",
+    modal: "0 20px 60px rgba(0, 0, 0, 0.7)",
+    glow: "0 0 12px rgba(59, 130, 246, 0.4)",
   },
 } as const;
 

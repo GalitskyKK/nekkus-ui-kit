@@ -6,45 +6,34 @@ export interface StatusDotProps {
   status: StatusDotStatus;
   label?: string;
   size?: number;
+  /** Пульсация для online/active (гайд: 2s цикл) */
+  pulse?: boolean;
 }
 
-const statusColors: Record<StatusDotStatus, string> = {
-  online: "#22c55e",
-  offline: "#6b7280",
-  busy: "#eab308",
-  error: "#ef4444",
+const dotColorClasses: Record<StatusDotStatus, string> = {
+  online: "bg-nekkus-success",
+  offline: "bg-nekkus-muted",
+  busy: "bg-nekkus-warning",
+  error: "bg-nekkus-error",
 };
 
 export const StatusDot: React.FC<StatusDotProps> = ({
   status,
   label,
   size = 8,
+  pulse = true,
 }) => {
-  const color = statusColors[status];
+  const isPulse = pulse && status === "online";
   return (
-    <span
-      style={{
-        display: "inline-flex",
-        alignItems: "center",
-        gap: "6px",
-      }}
-    >
+    <span className="inline-flex items-center gap-2">
       <span
-        style={{
-          width: size,
-          height: size,
-          borderRadius: "50%",
-          backgroundColor: color,
-          flexShrink: 0,
-        }}
+        data-nekkus-status-dot
+        data-pulse={isPulse ? "" : undefined}
+        className={`shrink-0 rounded-full ${dotColorClasses[status]}`}
+        style={{ width: size, height: size }}
       />
       {label != null && (
-        <span
-          style={{
-            fontSize: "13px",
-            color: "var(--nekkus-text-muted, #9ca3af)",
-          }}
-        >
+        <span className="text-nekkus-sm font-medium text-nekkus-text-muted font-mono">
           {label}
         </span>
       )}

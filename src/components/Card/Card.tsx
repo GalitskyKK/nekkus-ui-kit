@@ -3,34 +3,28 @@ import React from "react";
 export interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
   children: React.ReactNode;
   title?: string;
+  /** Тонкая цветная полоска сверху (модуль). Задаёт data-accent-top. */
+  accentTop?: boolean;
 }
 
-const cardStyle: React.CSSProperties = {
-  backgroundColor: "var(--nekkus-surface, #1e2129)",
-  border: "1px solid var(--nekkus-border, #2d323d)",
-  borderRadius: "var(--nekkus-radius-md, 8px)",
-  padding: "var(--nekkus-spacing-md, 16px)",
-};
+/** Карточка: Layer 1, 1px граница, 14px радиус, 20px padding. Гайд: «глубина слоями, не тенями». */
+const titleClasses =
+  "text-nekkus-card font-semibold text-nekkus-text mb-3";
 
 export const Card: React.FC<CardProps> = ({
   children,
   title,
-  style,
+  accentTop = false,
+  className = "",
   ...rest
 }) => (
-  <div style={{ ...cardStyle, ...style }} {...rest}>
-    {title && (
-      <div
-        style={{
-          fontSize: "14px",
-          fontWeight: 600,
-          marginBottom: "8px",
-          color: "var(--nekkus-text, #e6e8ec)",
-        }}
-      >
-        {title}
-      </div>
-    )}
+  <div
+    data-nekkus-card
+    data-accent-top={accentTop ? "" : undefined}
+    className={className.trim()}
+    {...rest}
+  >
+    {title ? <div className={titleClasses}>{title}</div> : null}
     {children}
   </div>
 );

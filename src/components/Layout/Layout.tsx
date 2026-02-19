@@ -2,54 +2,46 @@ import React from "react";
 
 export interface PageLayoutProps {
   children: React.ReactNode;
+  className?: string;
   style?: React.CSSProperties;
 }
 
-export const PageLayout: React.FC<PageLayoutProps> = ({ children, style }) => (
+/** Гайд: Layer 0 фон, отступы 24–32px от краёв */
+const pageLayoutClasses =
+  "min-h-screen bg-nekkus-layer-0 text-nekkus-text p-6 md:p-8 box-border font-sans";
+
+export const PageLayout: React.FC<PageLayoutProps> = ({
+  children,
+  className = "",
+  style,
+}) => (
   <div
-    style={{
-      minHeight: "100vh",
-      backgroundColor: "var(--nekkus-bg, #0f1117)",
-      color: "var(--nekkus-text, #e6e8ec)",
-      padding: "var(--nekkus-spacing-md, 16px)",
-      boxSizing: "border-box",
-      ...style,
-    }}
+    className={`${pageLayoutClasses} ${className}`.trim()}
+    style={style}
+    data-nekkus-root
   >
     {children}
   </div>
 );
 
-export interface SectionProps extends React.HTMLAttributes<HTMLDivElement> {
+export interface SectionProps extends React.HTMLAttributes<HTMLElement> {
   children: React.ReactNode;
   title?: string;
+  className?: string;
 }
+
+/** Заголовок секции: 16px semibold */
+const sectionTitleClasses =
+  "text-nekkus-card font-semibold text-nekkus-text mb-3";
 
 export const Section: React.FC<SectionProps> = ({
   children,
   title,
-  style,
+  className = "",
   ...rest
 }) => (
-  <section
-    style={{
-      marginBottom: "24px",
-      ...style,
-    }}
-    {...rest}
-  >
-    {title && (
-      <h2
-        style={{
-          fontSize: "16px",
-          fontWeight: 600,
-          marginBottom: "12px",
-          color: "var(--nekkus-text, #e6e8ec)",
-        }}
-      >
-        {title}
-      </h2>
-    )}
+  <section className={`mb-8 ${className}`.trim()} {...rest}>
+    {title ? <h2 className={sectionTitleClasses}>{title}</h2> : null}
     {children}
   </section>
 );
