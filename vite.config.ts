@@ -30,6 +30,10 @@ export default defineConfig({
           "framer-motion": "motion",
           "lucide-react": "lucideReact",
         },
+        assetFileNames: (assetInfo) => {
+          const name = assetInfo.name ?? "";
+          return name.endsWith(".css") ? "theme.css" : "assets/[name]-[hash][extname]";
+        },
       },
     },
     sourcemap: true,
