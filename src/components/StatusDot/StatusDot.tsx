@@ -10,26 +10,20 @@ export interface StatusDotProps {
   pulse?: boolean;
 }
 
-const dotColorClasses: Record<StatusDotStatus, string> = {
-  online: "bg-nekkus-success",
-  offline: "bg-nekkus-muted",
-  busy: "bg-nekkus-warning",
-  error: "bg-nekkus-error",
-};
-
+/** Цвет и glow задаются в globals.css по data-status / data-pulse */
 export const StatusDot: React.FC<StatusDotProps> = ({
   status,
   label,
   size = 8,
   pulse = true,
 }) => {
-  const isPulse = pulse && status === "online";
+  const isPulse = pulse && (status === "online" || status === "busy");
   return (
     <span className="inline-flex items-center gap-2">
       <span
         data-nekkus-status-dot
+        data-status={status}
         data-pulse={isPulse ? "" : undefined}
-        className={`shrink-0 rounded-full ${dotColorClasses[status]}`}
         style={{ width: size, height: size }}
       />
       {label != null && (

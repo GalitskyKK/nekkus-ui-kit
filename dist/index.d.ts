@@ -2,7 +2,11 @@
 export { Button } from './components/Button';
 export type { ButtonProps, ButtonVariant } from './components/Button';
 export { Card } from './components/Card';
-export type { CardProps } from './components/Card';
+export type { CardProps, CardVariant, CardModule } from './components/Card';
+export { MetricHero } from './components/MetricHero';
+export type { MetricHeroProps } from './components/MetricHero';
+export { Divider } from './components/Divider';
+export type { DividerProps } from './components/Divider';
 export { StatusDot } from './components/StatusDot';
 export type { StatusDotProps, StatusDotStatus } from './components/StatusDot';
 export { PageLayout, Section } from './components/Layout';

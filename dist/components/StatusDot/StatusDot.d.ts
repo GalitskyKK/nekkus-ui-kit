@@ -8,4 +8,5 @@ export interface StatusDotProps {
     /** Пульсация для online/active (гайд: 2s цикл) */
     pulse?: boolean;
 }
+/** Цвет и glow задаются в globals.css по data-status / data-pulse */
 export declare const StatusDot: React.FC<StatusDotProps>;
