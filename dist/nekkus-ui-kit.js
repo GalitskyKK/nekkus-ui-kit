@@ -1,5 +1,5 @@
 import { jsxs as o, jsx as s } from "react/jsx-runtime";
-import { useId as D } from "react";
+import { useId as M } from "react";
 const j = "inline-flex items-center justify-center gap-2 disabled:cursor-not-allowed", Q = ({
   variant: e = "primary",
   size: t = "md",
@@ -24,7 +24,7 @@ const j = "inline-flex items-center justify-center gap-2 disabled:cursor-not-all
     ]
   }
 ), L = "text-nekkus-card font-semibold text-nekkus-text mb-3";
-function H(e) {
+function P(e) {
   if (e === !0) return "net";
   if (!(e === !1 || e == null))
     return e;
@@ -39,7 +39,7 @@ const U = ({
   className: d = "",
   ...p
 }) => {
-  const h = H(n);
+  const h = P(n);
   return /* @__PURE__ */ o(
     "div",
     {
@@ -81,27 +81,27 @@ const U = ({
     }
   ),
   t != null && /* @__PURE__ */ s("span", { className: "text-nekkus-sm font-medium text-nekkus-text-muted font-mono", children: t })
-] }), P = "min-h-screen bg-nekkus-layer-0 text-nekkus-text p-6 md:p-8 box-border font-sans", se = ({
+] }), W = "min-h-screen bg-nekkus-layer-0 text-nekkus-text p-6 md:p-8 box-border font-sans", se = ({
   children: e,
   className: t = "",
   style: n
 }) => /* @__PURE__ */ s(
   "div",
   {
-    className: `${P} ${t}`.trim(),
+    className: `${W} ${t}`.trim(),
     style: n,
     "data-nekkus-root": !0,
     children: e
   }
-), W = "text-nekkus-card font-semibold text-nekkus-text mb-3", ne = ({
+), G = "text-nekkus-card font-semibold text-nekkus-text mb-3", ne = ({
   children: e,
   title: t,
   className: n = "",
   ...a
 }) => /* @__PURE__ */ o("section", { className: `mb-8 ${n}`.trim(), ...a, children: [
-  t ? /* @__PURE__ */ s("h2", { className: W, children: t }) : null,
+  t ? /* @__PURE__ */ s("h2", { className: G, children: t }) : null,
   e
-] }), G = "w-full min-w-[4px] rounded-t-[4px] bg-nekkus-accent/80 hover:bg-nekkus-accent transition-[height] duration-300", O = "text-[10px] font-medium text-nekkus-text-dim font-mono truncate max-w-full", ae = ({
+] }), H = "w-full min-w-[4px] rounded-t-[4px] bg-nekkus-accent/80 hover:bg-nekkus-accent transition-[height] duration-300", O = "text-[10px] font-medium text-nekkus-text-dim font-mono truncate max-w-full", ae = ({
   data: e,
   labels: t,
   height: n = 120,
@@ -110,11 +110,11 @@ const U = ({
   valueSuffix: l = "",
   maxValue: d
 }) => {
-  const p = e.length > 0 ? e : [0], h = Math.max(...p, 1), x = d ?? h;
+  const p = e.length > 0 ? e : [0], h = Math.max(...p, 1), k = d ?? h;
   return /* @__PURE__ */ o("div", { className: "chart-wrap flex gap-0.5 font-mono", children: [
     /* @__PURE__ */ o("div", { className: "chart-y-axis flex flex-col justify-between text-[10px] text-nekkus-text-dim font-mono pr-2 shrink-0", style: { height: n }, children: [
       /* @__PURE__ */ o("span", { children: [
-        x <= 1 ? "1" : Math.round(x),
+        k <= 1 ? "1" : Math.round(k),
         l
       ] }),
       /* @__PURE__ */ o("span", { children: [
@@ -127,7 +127,7 @@ const U = ({
       {
         className: "flex items-end flex-1 gap-0.5 min-h-0",
         style: { height: n },
-        children: p.map((c, k) => /* @__PURE__ */ o(
+        children: p.map((c, x) => /* @__PURE__ */ o(
           "div",
           {
             className: "flex-1 flex flex-col items-center justify-end gap-1 min-w-0 h-full",
@@ -136,22 +136,22 @@ const U = ({
               /* @__PURE__ */ s(
                 "div",
                 {
-                  className: `${G} shrink-0`,
+                  className: `${H} shrink-0`,
                   style: {
-                    height: c === 0 ? 0 : `${Math.max(c / x * 100, 2)}%`,
+                    height: c === 0 ? 0 : `${Math.max(c / k * 100, 2)}%`,
                     ...a != null ? { backgroundColor: a } : {}
                   }
                 }
               ),
-              ((t == null ? void 0 : t[k]) != null || r) && /* @__PURE__ */ s("span", { className: O, title: String(c), children: (t == null ? void 0 : t[k]) ?? (r ? `${Number(c).toFixed(c % 1 === 0 ? 0 : 1)}${l}` : null) })
+              ((t == null ? void 0 : t[x]) != null || r) && /* @__PURE__ */ s("span", { className: O, title: String(c), children: (t == null ? void 0 : t[x]) ?? (r ? `${Number(c).toFixed(c % 1 === 0 ? 0 : 1)}${l}` : null) })
             ]
           },
-          k
+          x
         ))
       }
     )
   ] });
-}, w = "rgba(148, 163, 184, 0.2)", i = { top: 8, right: 8, bottom: 24, left: 48 }, re = ({
+}, w = "rgba(148, 163, 184, 0.2)", i = { top: 4, right: 12, bottom: 16, left: 32 }, re = ({
   data: e,
   height: t = 160,
   color: n = "#3b82f6",
@@ -161,12 +161,12 @@ const U = ({
   xLabel: d,
   timeRangeLabel: p
 }) => {
-  const h = D().replace(/:/g, ""), x = e.length > 0 ? e : [0], c = a ?? Math.max(...x, 1), k = 400, $ = k - i.left - i.right, b = t - i.top - i.bottom, f = x.length, C = f > 1 ? $ / (f - 1) : 0, v = (u) => i.left + u * C, F = (u) => {
+  const h = M().replace(/:/g, ""), k = e.length > 0 ? e : [0], c = a ?? Math.max(...k, 1), x = 600, $ = x - i.left - i.right, b = t - i.top - i.bottom, f = k.length, C = f > 1 ? $ / (f - 1) : 0, v = (u) => i.left + u * C, F = (u) => {
     const m = Math.min(c, Math.max(0, u));
     return i.top + b - m / c * b;
-  }, N = x.map((u, m) => `${v(m)},${F(u)}`).join(" "), E = f > 0 ? `M ${i.left},${i.top + b} L ${N} L ${v(f - 1)},${i.top + b} Z` : "", B = f > 0 ? `M ${N.split(" ").join(" L ")}` : "", y = 5, M = Array.from({ length: y + 1 }, (u, m) => {
-    const g = i.top + b * m / y, A = c - c * m / y;
-    return { y: g, val: A };
+  }, N = k.map((u, m) => `${v(m)},${F(u)}`).join(" "), E = f > 0 ? `M ${i.left},${i.top + b} L ${N} L ${v(f - 1)},${i.top + b} Z` : "", B = f > 0 ? `M ${N.split(" ").join(" L ")}` : "", y = 5, A = Array.from({ length: y + 1 }, (u, m) => {
+    const g = i.top + b * m / y, D = c - c * m / y;
+    return { y: g, val: D };
   });
   return /* @__PURE__ */ o("div", { className: "line-chart-wrap flex flex-col gap-1", children: [
     /* @__PURE__ */ o("div", { className: "flex justify-between items-baseline text-[10px] text-nekkus-text-dim font-mono", children: [
@@ -180,21 +180,21 @@ const U = ({
       "svg",
       {
         width: "100%",
-        viewBox: `0 0 ${k} ${t}`,
-        preserveAspectRatio: "xMidYMid meet",
-        className: "min-h-[120px]",
-        style: { maxHeight: t },
+        viewBox: `0 0 ${x} ${t}`,
+        preserveAspectRatio: "none",
+        className: "min-h-[120px] block",
+        style: { height: t },
         children: [
           /* @__PURE__ */ s("defs", { children: /* @__PURE__ */ o("linearGradient", { id: h, x1: "0", x2: "0", y1: "0", y2: "1", children: [
             /* @__PURE__ */ s("stop", { offset: "0%", stopColor: n, stopOpacity: 0.35 }),
             /* @__PURE__ */ s("stop", { offset: "100%", stopColor: n, stopOpacity: 0.05 })
           ] }) }),
-          M.map(({ y: u, val: m }, g) => /* @__PURE__ */ s(
+          A.map(({ y: u, val: m }, g) => /* @__PURE__ */ s(
             "line",
             {
               x1: i.left,
               y1: u,
-              x2: k - i.right,
+              x2: x - i.right,
               y2: u,
               stroke: w,
               strokeWidth: 1
@@ -255,7 +255,7 @@ const U = ({
       }
     )
   ] });
-}, Y = "w-full bg-nekkus-layer-0 border border-nekkus-border rounded-nekkus-lg px-3.5 py-2.5 text-nekkus-base text-nekkus-text font-sans cursor-pointer box-border transition-[border-color,box-shadow] duration-150", _ = "flex flex-col gap-1 w-full", T = "text-nekkus-sm font-medium text-nekkus-text-muted", ie = ({
+}, _ = "w-full bg-nekkus-layer-0 border border-nekkus-border rounded-nekkus-lg px-3.5 py-2.5 text-nekkus-base text-nekkus-text font-sans cursor-pointer box-border transition-[border-color,box-shadow] duration-150", T = "flex flex-col gap-1 w-full", X = "text-nekkus-sm font-medium text-nekkus-text-muted", ie = ({
   label: e,
   options: t,
   className: n = "",
@@ -263,20 +263,20 @@ const U = ({
   ...r
 }) => {
   const l = a ?? (e ? `select-${e.replace(/\s/g, "-")}` : void 0);
-  return /* @__PURE__ */ o("label", { className: _, htmlFor: l, children: [
-    e ? /* @__PURE__ */ s("span", { className: T, children: e }) : null,
+  return /* @__PURE__ */ o("label", { className: T, htmlFor: l, children: [
+    e ? /* @__PURE__ */ s("span", { className: X, children: e }) : null,
     /* @__PURE__ */ s(
       "select",
       {
         id: l,
         "data-nekkus-select": !0,
-        className: `${Y} ${n}`.trim(),
+        className: `${_} ${n}`.trim(),
         ...r,
         children: t.map((d) => /* @__PURE__ */ s("option", { value: d.value, children: d.label }, d.value))
       }
     )
   ] });
-}, X = {
+}, Y = {
   default: "bg-nekkus-accent/15 text-nekkus-accent",
   success: "bg-nekkus-success/15 text-nekkus-success",
   warning: "bg-nekkus-warning/15 text-nekkus-warning",
@@ -290,7 +290,7 @@ const U = ({
 }) => /* @__PURE__ */ s(
   "span",
   {
-    className: `${z} ${X[t]} ${n}`.trim(),
+    className: `${z} ${Y[t]} ${n}`.trim(),
     ...a,
     children: e
   }

@@ -19,7 +19,7 @@ export interface LineChartProps {
 }
 
 const GRID_COLOR = "rgba(148, 163, 184, 0.2)";
-const PADDING = { top: 8, right: 8, bottom: 24, left: 48 };
+const PADDING = { top: 4, right: 12, bottom: 16, left: 32 };
 
 export const LineChart: React.FC<LineChartProps> = ({
   data,
@@ -34,7 +34,7 @@ export const LineChart: React.FC<LineChartProps> = ({
   const gradientId = useId().replace(/:/g, "");
   const safeData = data.length > 0 ? data : [0];
   const max = maxValue ?? Math.max(...safeData, 1);
-  const width = 400;
+  const width = 600;
   const innerWidth = width - PADDING.left - PADDING.right;
   const innerHeight = height - PADDING.top - PADDING.bottom;
   const n = safeData.length;
@@ -69,9 +69,9 @@ export const LineChart: React.FC<LineChartProps> = ({
       <svg
         width="100%"
         viewBox={`0 0 ${width} ${height}`}
-        preserveAspectRatio="xMidYMid meet"
-        className="min-h-[120px]"
-        style={{ maxHeight: height }}
+        preserveAspectRatio="none"
+        className="min-h-[120px] block"
+        style={{ height }}
       >
         <defs>
           <linearGradient id={gradientId} x1="0" x2="0" y1="0" y2="1">
