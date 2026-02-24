@@ -195,6 +195,11 @@ body::before {
   border-top: 1px solid rgba(59, 130, 246, 0.3);
   box-shadow: var(--shadow-card), 0 0 40px rgba(59, 130, 246, 0.03), var(--inner-highlight-strong);
 }
+[data-nekkus-card][data-module-glow="eye"] {
+  border: 1px solid rgba(16, 185, 129, 0.15);
+  border-top: 1px solid rgba(16, 185, 129, 0.3);
+  box-shadow: var(--shadow-card), 0 0 40px rgba(16, 185, 129, 0.03), var(--inner-highlight-strong);
+}
 
 /* ============================
    BUTTONS (data-nekkus-button)
