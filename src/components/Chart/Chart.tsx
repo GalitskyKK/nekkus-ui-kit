@@ -38,16 +38,17 @@ export const Chart: React.FC<ChartProps> = ({
         <span>0{valueSuffix}</span>
       </div>
       <div
-        className="flex items-end gap-0.5 flex-1"
+        className="flex items-end flex-1 gap-0.5 min-h-0"
         style={{ height }}
       >
         {safeData.map((value, i) => (
           <div
             key={i}
-            className="flex-1 flex flex-col items-center justify-end gap-1 min-w-0"
+            className="flex-1 flex flex-col items-center justify-end gap-1 min-w-0 h-full"
+            style={{ height }}
           >
             <div
-              className={barClasses}
+              className={`${barClasses} shrink-0`}
               style={{
                 height: value === 0 ? 0 : `${Math.max((value / max) * 100, 2)}%`,
                 ...(color != null ? { backgroundColor: color } : {}),
