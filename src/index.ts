@@ -21,6 +21,9 @@ export type { PageLayoutProps, SectionProps } from "./components/Layout";
 export { Chart } from "./components/Chart";
 export type { ChartProps } from "./components/Chart";
 
+export { LineChart } from "./components/LineChart";
+export type { LineChartProps } from "./components/LineChart";
+
 export { Input } from "./components/Input";
 export type { InputProps } from "./components/Input";
 

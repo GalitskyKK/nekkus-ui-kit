@@ -1,215 +1,317 @@
-import { jsxs as l, jsx as a } from "react/jsx-runtime";
-const c = "inline-flex items-center justify-center gap-2 disabled:cursor-not-allowed", A = ({
+import { jsxs as o, jsx as s } from "react/jsx-runtime";
+import { useId as D } from "react";
+const j = "inline-flex items-center justify-center gap-2 disabled:cursor-not-allowed", Q = ({
   variant: e = "primary",
   size: t = "md",
   children: n,
-  icon: s,
+  icon: a,
   iconPosition: r = "left",
-  className: i = "",
-  ...o
-}) => /* @__PURE__ */ l(
+  className: l = "",
+  ...d
+}) => /* @__PURE__ */ o(
   "button",
   {
     type: "button",
     "data-nekkus-button": !0,
     "data-variant": e,
     "data-size": t,
-    className: `${c} ${i}`.trim(),
-    ...o,
+    className: `${j} ${l}`.trim(),
+    ...d,
     children: [
-      s && r === "left" && /* @__PURE__ */ a(s, { className: "w-4 h-4 shrink-0", "aria-hidden": !0, strokeWidth: 1.5 }),
+      a && r === "left" && /* @__PURE__ */ s(a, { className: "w-4 h-4 shrink-0", "aria-hidden": !0, strokeWidth: 1.5 }),
       n,
-      s && r === "right" && /* @__PURE__ */ a(s, { className: "w-4 h-4 shrink-0", "aria-hidden": !0, strokeWidth: 1.5 })
+      a && r === "right" && /* @__PURE__ */ s(a, { className: "w-4 h-4 shrink-0", "aria-hidden": !0, strokeWidth: 1.5 })
     ]
   }
-), k = "text-nekkus-card font-semibold text-nekkus-text mb-3";
-function m(e) {
+), L = "text-nekkus-card font-semibold text-nekkus-text mb-3";
+function H(e) {
   if (e === !0) return "net";
   if (!(e === !1 || e == null))
     return e;
 }
-const D = ({
+const U = ({
   children: e,
   title: t,
   accentTop: n = !1,
-  variant: s = "default",
+  variant: a = "default",
   heroModule: r,
-  moduleGlow: i,
-  className: o = "",
-  ...d
+  moduleGlow: l,
+  className: d = "",
+  ...p
 }) => {
-  const u = m(n);
-  return /* @__PURE__ */ l(
+  const h = H(n);
+  return /* @__PURE__ */ o(
     "div",
     {
       "data-nekkus-card": !0,
-      "data-accent-top": u ?? void 0,
-      "data-elevated": s === "elevated" ? "" : void 0,
-      "data-hero": s === "hero" ? "" : void 0,
-      "data-hero-module": s === "hero" && r ? r : void 0,
-      "data-module-glow": i ?? void 0,
-      className: o.trim(),
-      ...d,
+      "data-accent-top": h ?? void 0,
+      "data-elevated": a === "elevated" ? "" : void 0,
+      "data-hero": a === "hero" ? "" : void 0,
+      "data-hero-module": a === "hero" && r ? r : void 0,
+      "data-module-glow": l ?? void 0,
+      className: d.trim(),
+      ...p,
       children: [
-        t ? /* @__PURE__ */ a("div", { className: k, children: t }) : null,
+        t ? /* @__PURE__ */ s("div", { className: L, children: t }) : null,
         e
       ]
     }
   );
-}, S = ({
+}, V = ({
   value: e,
   label: t,
   className: n = "",
-  ...s
-}) => /* @__PURE__ */ l("div", { className: `${n}`.trim(), ...s, children: [
-  /* @__PURE__ */ a("div", { className: "nekkus-metric-hero", children: e }),
-  t != null && /* @__PURE__ */ a("div", { className: "nekkus-metric-label", children: t })
-] }), H = ({ className: e = "", ...t }) => /* @__PURE__ */ a("hr", { className: `nekkus-divider ${e}`.trim(), ...t }), j = ({
+  ...a
+}) => /* @__PURE__ */ o("div", { className: `${n}`.trim(), ...a, children: [
+  /* @__PURE__ */ s("div", { className: "nekkus-metric-hero", children: e }),
+  t != null && /* @__PURE__ */ s("div", { className: "nekkus-metric-label", children: t })
+] }), ee = ({ className: e = "", ...t }) => /* @__PURE__ */ s("hr", { className: `nekkus-divider ${e}`.trim(), ...t }), te = ({
   status: e,
   label: t,
   size: n = 8,
-  pulse: s = !0
-}) => /* @__PURE__ */ l("span", { className: "inline-flex items-center gap-2", children: [
-  /* @__PURE__ */ a(
+  pulse: a = !0
+}) => /* @__PURE__ */ o("span", { className: "inline-flex items-center gap-2", children: [
+  /* @__PURE__ */ s(
     "span",
     {
       "data-nekkus-status-dot": !0,
       "data-status": e,
-      "data-pulse": s && (e === "online" || e === "busy") ? "" : void 0,
+      "data-pulse": a && (e === "online" || e === "busy") ? "" : void 0,
       style: { width: n, height: n }
     }
   ),
-  t != null && /* @__PURE__ */ a("span", { className: "text-nekkus-sm font-medium text-nekkus-text-muted font-mono", children: t })
-] }), x = "min-h-screen bg-nekkus-layer-0 text-nekkus-text p-6 md:p-8 box-border font-sans", M = ({
+  t != null && /* @__PURE__ */ s("span", { className: "text-nekkus-sm font-medium text-nekkus-text-muted font-mono", children: t })
+] }), P = "min-h-screen bg-nekkus-layer-0 text-nekkus-text p-6 md:p-8 box-border font-sans", se = ({
   children: e,
   className: t = "",
   style: n
-}) => /* @__PURE__ */ a(
+}) => /* @__PURE__ */ s(
   "div",
   {
-    className: `${x} ${t}`.trim(),
+    className: `${P} ${t}`.trim(),
     style: n,
     "data-nekkus-root": !0,
     children: e
   }
-), g = "text-nekkus-card font-semibold text-nekkus-text mb-3", P = ({
+), W = "text-nekkus-card font-semibold text-nekkus-text mb-3", ne = ({
   children: e,
   title: t,
   className: n = "",
-  ...s
-}) => /* @__PURE__ */ l("section", { className: `mb-8 ${n}`.trim(), ...s, children: [
-  t ? /* @__PURE__ */ a("h2", { className: g, children: t }) : null,
+  ...a
+}) => /* @__PURE__ */ o("section", { className: `mb-8 ${n}`.trim(), ...a, children: [
+  t ? /* @__PURE__ */ s("h2", { className: W, children: t }) : null,
   e
-] }), p = "w-full min-h-[6px] rounded-t-[4px] bg-nekkus-accent/80 hover:bg-nekkus-accent transition-[height] duration-300", h = "text-nekkus-xs font-medium text-nekkus-text-dim font-mono", G = ({
+] }), G = "w-full min-w-[4px] rounded-t-[4px] bg-nekkus-accent/80 hover:bg-nekkus-accent transition-[height] duration-300", O = "text-[10px] font-medium text-nekkus-text-dim font-mono truncate max-w-full", ae = ({
   data: e,
   labels: t,
   height: n = 120,
-  color: s
+  color: a,
+  showValueLabels: r = !1,
+  valueSuffix: l = "",
+  maxValue: d
 }) => {
-  const r = Math.max(...e, 1);
-  return /* @__PURE__ */ a(
-    "div",
-    {
-      className: "flex items-end gap-1 font-mono",
-      style: { height: n },
-      children: e.map((i, o) => /* @__PURE__ */ l(
-        "div",
-        {
-          className: "flex-1 flex flex-col items-center gap-1.5",
-          children: [
-            /* @__PURE__ */ a(
-              "div",
-              {
-                className: p,
-                style: {
-                  height: `${i / r * 100}%`,
-                  ...s != null ? { backgroundColor: s } : {}
+  const p = e.length > 0 ? e : [0], h = Math.max(...p, 1), x = d ?? h;
+  return /* @__PURE__ */ o("div", { className: "chart-wrap flex gap-0.5 font-mono", children: [
+    /* @__PURE__ */ o("div", { className: "chart-y-axis flex flex-col justify-between text-[10px] text-nekkus-text-dim font-mono pr-2 shrink-0", style: { height: n }, children: [
+      /* @__PURE__ */ o("span", { children: [
+        x <= 1 ? "1" : Math.round(x),
+        l
+      ] }),
+      /* @__PURE__ */ o("span", { children: [
+        "0",
+        l
+      ] })
+    ] }),
+    /* @__PURE__ */ s(
+      "div",
+      {
+        className: "flex items-end flex-1 gap-0.5 min-h-0",
+        style: { height: n },
+        children: p.map((c, k) => /* @__PURE__ */ o(
+          "div",
+          {
+            className: "flex-1 flex flex-col items-center justify-end gap-1 min-w-0 h-full",
+            style: { height: n },
+            children: [
+              /* @__PURE__ */ s(
+                "div",
+                {
+                  className: `${G} shrink-0`,
+                  style: {
+                    height: c === 0 ? 0 : `${Math.max(c / x * 100, 2)}%`,
+                    ...a != null ? { backgroundColor: a } : {}
+                  }
                 }
-              }
-            ),
-            (t == null ? void 0 : t[o]) != null && /* @__PURE__ */ a("span", { className: h, children: t[o] })
-          ]
-        },
-        o
-      ))
-    }
-  );
-}, b = "w-full bg-nekkus-layer-0 border border-nekkus-border rounded-nekkus-lg px-3.5 py-2.5 text-nekkus-base text-nekkus-text font-sans placeholder:text-nekkus-text-dim box-border transition-[border-color,box-shadow] duration-150", f = "flex flex-col gap-1 w-full", v = "text-nekkus-sm font-medium text-nekkus-text-muted", L = ({
+              ),
+              ((t == null ? void 0 : t[k]) != null || r) && /* @__PURE__ */ s("span", { className: O, title: String(c), children: (t == null ? void 0 : t[k]) ?? (r ? `${Number(c).toFixed(c % 1 === 0 ? 0 : 1)}${l}` : null) })
+            ]
+          },
+          k
+        ))
+      }
+    )
+  ] });
+}, w = "rgba(148, 163, 184, 0.2)", i = { top: 8, right: 8, bottom: 24, left: 48 }, re = ({
+  data: e,
+  height: t = 160,
+  color: n = "#3b82f6",
+  maxValue: a = 100,
+  valueSuffix: r = "%",
+  yLabel: l,
+  xLabel: d,
+  timeRangeLabel: p
+}) => {
+  const h = D().replace(/:/g, ""), x = e.length > 0 ? e : [0], c = a ?? Math.max(...x, 1), k = 400, $ = k - i.left - i.right, b = t - i.top - i.bottom, f = x.length, C = f > 1 ? $ / (f - 1) : 0, v = (u) => i.left + u * C, F = (u) => {
+    const m = Math.min(c, Math.max(0, u));
+    return i.top + b - m / c * b;
+  }, N = x.map((u, m) => `${v(m)},${F(u)}`).join(" "), E = f > 0 ? `M ${i.left},${i.top + b} L ${N} L ${v(f - 1)},${i.top + b} Z` : "", B = f > 0 ? `M ${N.split(" ").join(" L ")}` : "", y = 5, M = Array.from({ length: y + 1 }, (u, m) => {
+    const g = i.top + b * m / y, A = c - c * m / y;
+    return { y: g, val: A };
+  });
+  return /* @__PURE__ */ o("div", { className: "line-chart-wrap flex flex-col gap-1", children: [
+    /* @__PURE__ */ o("div", { className: "flex justify-between items-baseline text-[10px] text-nekkus-text-dim font-mono", children: [
+      l && /* @__PURE__ */ s("span", { children: l }),
+      /* @__PURE__ */ o("span", { children: [
+        c,
+        r
+      ] })
+    ] }),
+    /* @__PURE__ */ o(
+      "svg",
+      {
+        width: "100%",
+        viewBox: `0 0 ${k} ${t}`,
+        preserveAspectRatio: "xMidYMid meet",
+        className: "min-h-[120px]",
+        style: { maxHeight: t },
+        children: [
+          /* @__PURE__ */ s("defs", { children: /* @__PURE__ */ o("linearGradient", { id: h, x1: "0", x2: "0", y1: "0", y2: "1", children: [
+            /* @__PURE__ */ s("stop", { offset: "0%", stopColor: n, stopOpacity: 0.35 }),
+            /* @__PURE__ */ s("stop", { offset: "100%", stopColor: n, stopOpacity: 0.05 })
+          ] }) }),
+          M.map(({ y: u, val: m }, g) => /* @__PURE__ */ s(
+            "line",
+            {
+              x1: i.left,
+              y1: u,
+              x2: k - i.right,
+              y2: u,
+              stroke: w,
+              strokeWidth: 1
+            },
+            g
+          )),
+          f > 1 && Array.from({ length: 5 }, (u, m) => {
+            const g = i.left + $ * m / 4;
+            return /* @__PURE__ */ s(
+              "line",
+              {
+                x1: g,
+                y1: i.top,
+                x2: g,
+                y2: t - i.bottom,
+                stroke: w,
+                strokeWidth: 1
+              },
+              m
+            );
+          }),
+          /* @__PURE__ */ s("path", { d: E, fill: `url(#${h})` }),
+          /* @__PURE__ */ s(
+            "path",
+            {
+              d: B,
+              fill: "none",
+              stroke: n,
+              strokeWidth: 2,
+              strokeLinecap: "round",
+              strokeLinejoin: "round"
+            }
+          )
+        ]
+      }
+    ),
+    /* @__PURE__ */ o("div", { className: "flex justify-between text-[10px] text-nekkus-text-dim font-mono", children: [
+      d && /* @__PURE__ */ s("span", { children: d }),
+      p && /* @__PURE__ */ s("span", { children: "0" })
+    ] })
+  ] });
+}, S = "w-full bg-nekkus-layer-0 border border-nekkus-border rounded-nekkus-lg px-3.5 py-2.5 text-nekkus-base text-nekkus-text font-sans placeholder:text-nekkus-text-dim box-border transition-[border-color,box-shadow] duration-150", I = "flex flex-col gap-1 w-full", R = "text-nekkus-sm font-medium text-nekkus-text-muted", oe = ({
   label: e,
   className: t = "",
   id: n,
-  ...s
+  ...a
 }) => {
   const r = n ?? (e ? `input-${e.replace(/\s/g, "-")}` : void 0);
-  return /* @__PURE__ */ l("label", { className: f, htmlFor: r, children: [
-    e ? /* @__PURE__ */ a("span", { className: v, children: e }) : null,
-    /* @__PURE__ */ a(
+  return /* @__PURE__ */ o("label", { className: I, htmlFor: r, children: [
+    e ? /* @__PURE__ */ s("span", { className: R, children: e }) : null,
+    /* @__PURE__ */ s(
       "input",
       {
         id: r,
         "data-nekkus-input": !0,
-        className: `${b} ${t}`.trim(),
-        ...s
+        className: `${S} ${t}`.trim(),
+        ...a
       }
     )
   ] });
-}, N = "w-full bg-nekkus-layer-0 border border-nekkus-border rounded-nekkus-lg px-3.5 py-2.5 text-nekkus-base text-nekkus-text font-sans cursor-pointer box-border transition-[border-color,box-shadow] duration-150", C = "flex flex-col gap-1 w-full", $ = "text-nekkus-sm font-medium text-nekkus-text-muted", T = ({
+}, Y = "w-full bg-nekkus-layer-0 border border-nekkus-border rounded-nekkus-lg px-3.5 py-2.5 text-nekkus-base text-nekkus-text font-sans cursor-pointer box-border transition-[border-color,box-shadow] duration-150", _ = "flex flex-col gap-1 w-full", T = "text-nekkus-sm font-medium text-nekkus-text-muted", ie = ({
   label: e,
   options: t,
   className: n = "",
-  id: s,
+  id: a,
   ...r
 }) => {
-  const i = s ?? (e ? `select-${e.replace(/\s/g, "-")}` : void 0);
-  return /* @__PURE__ */ l("label", { className: C, htmlFor: i, children: [
-    e ? /* @__PURE__ */ a("span", { className: $, children: e }) : null,
-    /* @__PURE__ */ a(
+  const l = a ?? (e ? `select-${e.replace(/\s/g, "-")}` : void 0);
+  return /* @__PURE__ */ o("label", { className: _, htmlFor: l, children: [
+    e ? /* @__PURE__ */ s("span", { className: T, children: e }) : null,
+    /* @__PURE__ */ s(
       "select",
       {
-        id: i,
+        id: l,
         "data-nekkus-select": !0,
-        className: `${N} ${n}`.trim(),
+        className: `${Y} ${n}`.trim(),
         ...r,
-        children: t.map((o) => /* @__PURE__ */ a("option", { value: o.value, children: o.label }, o.value))
+        children: t.map((d) => /* @__PURE__ */ s("option", { value: d.value, children: d.label }, d.value))
       }
     )
   ] });
-}, y = {
+}, X = {
   default: "bg-nekkus-accent/15 text-nekkus-accent",
   success: "bg-nekkus-success/15 text-nekkus-success",
   warning: "bg-nekkus-warning/15 text-nekkus-warning",
   error: "bg-nekkus-error/15 text-nekkus-error",
   info: "bg-nekkus-info/15 text-nekkus-info"
-}, F = "inline-flex items-center px-2 py-0.5 text-nekkus-xs font-medium rounded-nekkus-sm font-sans", W = ({
+}, z = "inline-flex items-center px-2 py-0.5 text-nekkus-xs font-medium rounded-nekkus-sm font-sans", le = ({
   children: e,
   variant: t = "default",
   className: n = "",
-  ...s
-}) => /* @__PURE__ */ a(
+  ...a
+}) => /* @__PURE__ */ s(
   "span",
   {
-    className: `${F} ${y[t]} ${n}`.trim(),
-    ...s,
-    children: e
-  }
-), w = {
-  sm: "text-nekkus-sm font-medium",
-  base: "text-nekkus-base font-medium",
-  metric: "text-nekkus-metric font-bold"
-}, E = "font-mono text-nekkus-text tracking-tight", z = ({
-  children: e,
-  as: t = "span",
-  size: n = "base",
-  className: s = "",
-  ...r
-}) => /* @__PURE__ */ a(
-  t,
-  {
-    className: `${E} ${w[n]} ${s}`.trim(),
-    ...r,
+    className: `${z} ${X[t]} ${n}`.trim(),
+    ...a,
     children: e
   }
 ), J = {
+  sm: "text-nekkus-sm font-medium",
+  base: "text-nekkus-base font-medium",
+  metric: "text-nekkus-metric font-bold"
+}, Z = "font-mono text-nekkus-text tracking-tight", de = ({
+  children: e,
+  as: t = "span",
+  size: n = "base",
+  className: a = "",
+  ...r
+}) => /* @__PURE__ */ s(
+  t,
+  {
+    className: `${Z} ${J[n]} ${a}`.trim(),
+    ...r,
+    children: e
+  }
+), ce = {
   layers: {
     0: "#0A0A0F",
     1: "#12121A",
@@ -273,18 +375,19 @@ const D = ({
   transition: { fast: "150ms ease", normal: "200ms ease", slow: "300ms ease" }
 };
 export {
-  A as Button,
-  D as Card,
-  G as Chart,
-  z as DataText,
-  H as Divider,
-  L as Input,
-  S as MetricHero,
-  M as PageLayout,
-  W as Pill,
-  P as Section,
-  T as Select,
-  j as StatusDot,
-  J as theme
+  Q as Button,
+  U as Card,
+  ae as Chart,
+  de as DataText,
+  ee as Divider,
+  oe as Input,
+  re as LineChart,
+  V as MetricHero,
+  se as PageLayout,
+  le as Pill,
+  ne as Section,
+  ie as Select,
+  te as StatusDot,
+  ce as theme
 };
 //# sourceMappingURL=nekkus-ui-kit.js.map
