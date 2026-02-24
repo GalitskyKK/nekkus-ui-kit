@@ -34,3 +34,40 @@ export const WithButton: Story = {
     </Card>
   ),
 };
+
+export const AccentTop: Story = {
+  render: () => (
+    <div style={{ display: "flex", gap: 16, flexWrap: "wrap" }}>
+      <Card accentTop className="nekkus-glass-card" style={{ padding: 16, maxWidth: 200 }}>
+        accentTop (net)
+      </Card>
+      <Card accentTop="eye" className="nekkus-glass-card" style={{ padding: 16, maxWidth: 200 }}>
+        accentTop eye
+      </Card>
+    </div>
+  ),
+};
+
+export const Elevated: Story = {
+  render: () => (
+    <Card variant="elevated" title="Elevated" className="nekkus-glass-card" style={{ padding: 16, maxWidth: 280 }}>
+      Тень и inner highlight.
+    </Card>
+  ),
+};
+
+export const Hero: Story = {
+  render: () => (
+    <Card variant="hero" heroModule="net" title="Hero (gradient border)" style={{ padding: 16, maxWidth: 280 }}>
+      Градиентная граница по модулю.
+    </Card>
+  ),
+};
+
+export const ModuleGlow: Story = {
+  render: () => (
+    <Card moduleGlow="eye" title="Module glow" className="nekkus-glass-card" style={{ padding: 16, maxWidth: 280 }}>
+      Цветное свечение по границе (eye).
+    </Card>
+  ),
+};

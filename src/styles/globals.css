@@ -14,12 +14,12 @@
   --bg-hover: #232340;
   --bg-input: #0D0D14;
 
-  /* Glass (прозрачное стекло с блюром) */
-  --glass-bg: rgba(10, 10, 15, 0.72);
-  --glass-bg-card: rgba(18, 18, 26, 0.65);
-  --glass-border: rgba(255, 255, 255, 0.06);
-  --glass-blur: 16px;
-  --glass-blur-card: 12px;
+  /* Glass: просвечивает что за окном, блюр сверху */
+  --glass-bg: rgba(10, 10, 15, 0.55);
+  --glass-bg-card: rgba(18, 18, 26, 0.6);
+  --glass-border: rgba(255, 255, 255, 0.08);
+  --glass-blur: 20px;
+  --glass-blur-card: 14px;
 
   --border: #1E1E2E;
   --border-hover: #2E2E4E;
@@ -74,9 +74,6 @@
    BASE
    ============================ */
 @layer base {
-  body.nekkus-glass-body {
-    background: #050508;
-  }
   [data-nekkus-root],
   .nekkus-theme {
     font-family: var(--font-ui);
@@ -152,8 +149,8 @@ body::before {
   transform: translateY(-1px);
 }
 
-/* Accent stripe on top (module color) */
-[data-nekkus-card][data-accent-top]::before {
+/* Accent stripe on top (module color) — не применяется к карточкам с переливающейся обводкой */
+[data-nekkus-card][data-accent-top]:not(.nekkus-module-card-border)::before {
   content: "";
   position: absolute;
   left: 0;
@@ -164,10 +161,70 @@ body::before {
   border-radius: var(--radius-lg) var(--radius-lg) 0 0;
   background: var(--nekkus-module-color, var(--color-net));
 }
-[data-nekkus-card][data-accent-top="net"]::before { background: var(--color-net); }
-[data-nekkus-card][data-accent-top="eye"]::before { background: var(--color-eye); }
-[data-nekkus-card][data-accent-top="gate"]::before { background: var(--color-gate); }
-[data-nekkus-card][data-accent-top="port"]::before { background: var(--color-port); }
+[data-nekkus-card][data-accent-top="net"]:not(.nekkus-module-card-border)::before { background: var(--color-net); }
+[data-nekkus-card][data-accent-top="eye"]:not(.nekkus-module-card-border)::before { background: var(--color-eye); }
+[data-nekkus-card][data-accent-top="gate"]:not(.nekkus-module-card-border)::before { background: var(--color-gate); }
+[data-nekkus-card][data-accent-top="port"]:not(.nekkus-module-card-border)::before { background: var(--color-port); }
+
+/* Переливающаяся обводка карточки модуля (вместо полоски сверху): по цвету модуля, при активном — ярче + свечение */
+.nekkus-module-card-border[data-module] {
+  border: none;
+  overflow: hidden;
+}
+.nekkus-module-card-border[data-module]::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  z-index: 0;
+  border-radius: calc(var(--radius-lg) + 2px);
+  background-size: 200% 100%;
+  animation: nekkus-card-shimmer 6s ease-in-out infinite;
+  opacity: 0.45;
+}
+.nekkus-module-card-border[data-module][data-running="true"]::before {
+  opacity: 0.75;
+}
+.nekkus-module-card-border[data-module][data-running="true"] {
+  box-shadow: var(--glow-net);
+}
+.nekkus-module-card-border[data-module="net"]::before {
+  background: linear-gradient(90deg, transparent, var(--color-net), var(--color-port), var(--color-net), transparent);
+}
+.nekkus-module-card-border[data-module="net"][data-running="true"] {
+  box-shadow: 0 0 24px rgba(59, 130, 246, 0.25);
+}
+.nekkus-module-card-border[data-module="eye"]::before {
+  background: linear-gradient(90deg, transparent, var(--color-eye), #059669, var(--color-eye), transparent);
+}
+.nekkus-module-card-border[data-module="eye"][data-running="true"] {
+  box-shadow: 0 0 24px rgba(16, 185, 129, 0.25);
+}
+.nekkus-module-card-border[data-module="gate"]::before {
+  background: linear-gradient(90deg, transparent, var(--color-gate), #dc2626, var(--color-gate), transparent);
+}
+.nekkus-module-card-border[data-module="gate"][data-running="true"] {
+  box-shadow: 0 0 24px rgba(239, 68, 68, 0.25);
+}
+.nekkus-module-card-border[data-module="port"]::before {
+  background: linear-gradient(90deg, transparent, var(--color-port), #7c3aed, var(--color-port), transparent);
+}
+.nekkus-module-card-border[data-module="port"][data-running="true"] {
+  box-shadow: 0 0 24px rgba(139, 92, 246, 0.25);
+}
+.nekkus-module-card-border[data-module]::after {
+  content: '';
+  position: absolute;
+  inset: 2px;
+  z-index: 0;
+  border-radius: var(--radius-lg);
+  background: var(--glass-bg-card);
+  -webkit-backdrop-filter: blur(var(--glass-blur-card));
+  backdrop-filter: blur(var(--glass-blur-card));
+}
+@keyframes nekkus-card-shimmer {
+  0%, 100% { background-position: -200% 0; }
+  50% { background-position: 200% 0; }
+}
 
 /* Elevated card */
 [data-nekkus-card][data-elevated] {
@@ -221,6 +278,190 @@ body::before {
   border: 1px solid rgba(16, 185, 129, 0.15);
   border-top: 1px solid rgba(16, 185, 129, 0.3);
   box-shadow: var(--shadow-card), 0 0 40px rgba(16, 185, 129, 0.03), var(--inner-highlight-strong);
+}
+
+/* ============================
+   MODULE CARD (Hub)
+   ============================ */
+.nekkus-module-card {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.nekkus-module-card--small { grid-column: span 1; }
+.nekkus-module-card--medium { grid-column: span 2; }
+.nekkus-module-card--large { grid-column: span 3; }
+.nekkus-module-card--dragging { opacity: 0.6; }
+
+.nekkus-module-card__header {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+}
+.nekkus-module-card__drag {
+  flex: 1;
+  min-width: 0;
+  cursor: grab;
+  touch-action: none;
+}
+.nekkus-module-card__drag:active { cursor: grabbing; }
+.nekkus-module-card__drag::before {
+  content: "⋮⋮";
+  font-size: 14px;
+  letter-spacing: -2px;
+  color: var(--text-muted);
+  margin-right: 6px;
+  vertical-align: middle;
+}
+.nekkus-module-card__header-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.nekkus-module-card__title {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+.nekkus-module-card__desc {
+  margin: 4px 0 0;
+  color: var(--text-secondary);
+  font-size: 13px;
+}
+.nekkus-module-card__size-btns {
+  display: inline-flex;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+}
+.nekkus-module-card__size-btn {
+  padding: 2px 6px;
+  font-size: 11px;
+  font-weight: 600;
+  background: var(--bg-input);
+  border: none;
+  border-right: 1px solid var(--border);
+  color: var(--text-muted);
+  cursor: pointer;
+}
+.nekkus-module-card__size-btn:last-child { border-right: none; }
+.nekkus-module-card__size-btn:hover { color: var(--text-secondary); }
+.nekkus-module-card__size-btn--active {
+  background: var(--bg-nested);
+  color: var(--color-net);
+}
+.nekkus-module-card__config {
+  background: var(--bg-input);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 12px;
+  margin-top: 4px;
+}
+.nekkus-module-card__config-title {
+  margin: 0 0 8px;
+  font-size: 12px;
+  color: var(--text-secondary);
+}
+.nekkus-module-card__body {
+  background: var(--bg-root);
+  border-radius: 10px;
+  padding: 12px;
+  font-size: 12px;
+  color: var(--text-primary);
+  font-family: var(--font-mono);
+}
+.nekkus-module-card__footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+/* Module card grid */
+.nekkus-module-card-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 16px;
+  align-items: start;
+}
+@media (max-width: 900px) {
+  .nekkus-module-card-grid { grid-template-columns: repeat(2, 1fr); }
+  .nekkus-module-card--small,
+  .nekkus-module-card--medium,
+  .nekkus-module-card--large { grid-column: span 1; }
+}
+@media (max-width: 600px) {
+  .nekkus-module-card-grid { grid-template-columns: 1fr; gap: 12px; }
+  .nekkus-module-card__header { flex-direction: column; align-items: flex-start; gap: 10px; }
+  .nekkus-module-card__header-actions { width: 100%; justify-content: flex-start; }
+}
+
+/* Add module placeholder */
+.nekkus-add-placeholder {
+  grid-column: span 1;
+  min-height: 160px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: rgba(18, 18, 26, 0.4);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 2px dashed rgba(255, 255, 255, 0.12);
+  border-radius: 12px;
+  color: var(--text-secondary);
+  font-size: 14px;
+  cursor: pointer;
+  transition: border-color 0.15s, color 0.15s, background 0.15s;
+}
+.nekkus-add-placeholder:hover:not(:disabled) {
+  border-color: var(--color-net);
+  color: var(--text-secondary);
+  background: rgba(59, 130, 246, 0.06);
+}
+.nekkus-add-placeholder:disabled { cursor: not-allowed; opacity: 0.6; }
+.nekkus-add-placeholder--empty { grid-column: 1 / -1; min-height: 200px; }
+@media (max-width: 900px) {
+  .nekkus-add-placeholder--empty { grid-column: 1 / -1; }
+}
+.nekkus-add-placeholder__icon { font-size: 32px; line-height: 1; }
+
+/* Empty state (grid-wide message) */
+.nekkus-empty-state {
+  grid-column: 1 / -1;
+  margin: 0;
+  padding: 24px;
+  text-align: center;
+  font-size: 14px;
+  color: var(--text-secondary);
+  background: rgba(18, 18, 26, 0.5);
+  backdrop-filter: blur(8px);
+  border: 1px dashed rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+}
+
+/* Header stat (Модули: 2, Ошибки: 0) — в стороне, минимально заметный */
+.nekkus-header-stat {
+  background: rgba(18, 18, 26, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  padding: 6px 10px;
+  border-radius: var(--radius-sm);
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  font-size: 10px;
+  color: var(--text-muted);
+}
+.nekkus-header-stat strong {
+  font-size: 13px;
+  color: var(--text-secondary);
+  font-family: var(--font-mono);
 }
 
 /* ============================
@@ -431,7 +672,7 @@ body::before {
   );
 }
 
-/* App header: единый стиль для Hub, Net, Eye */
+/* App header: единый каркас (используется в AppShell) */
 .nekkus-app-header {
   position: relative;
   display: flex;
@@ -439,52 +680,14 @@ body::before {
   justify-content: space-between;
   align-items: flex-start;
   gap: 20px;
-  padding-bottom: 16px;
-  margin-bottom: 8px;
-}
-.nekkus-app-header__main {
-  min-width: 0;
-}
-.nekkus-app-header__eyebrow {
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
-  font-size: 11px;
-  color: var(--text-secondary);
-  margin: 0 0 6px;
-}
-.nekkus-app-header__title {
-  margin: 0;
-  font-size: 22px;
-  font-weight: 600;
-  color: var(--text-primary);
-  line-height: 1.2;
-}
-.nekkus-app-header__desc {
-  margin: 6px 0 0;
-  font-size: 13px;
-  color: var(--text-secondary);
-  line-height: 1.4;
-  max-width: 480px;
-}
-.nekkus-app-header__meta {
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 12px;
-}
-@media (max-width: 640px) {
-  .nekkus-app-header {
-    flex-direction: column;
-    align-items: stretch;
-  }
-  .nekkus-app-header__title {
-    font-size: 20px;
-  }
+  padding-bottom: 20px;
+  margin-bottom: 0;
+  border-bottom: 1px solid transparent;
 }
 .nekkus-app-header::after {
   content: '';
   position: absolute;
-  bottom: -1px;
+  bottom: 0;
   left: 0;
   right: 0;
   height: 1px;
@@ -500,9 +703,85 @@ body::before {
   animation: nekkus-header-shimmer 8s ease-in-out infinite;
   opacity: 0.5;
 }
+.nekkus-app-header__main {
+  min-width: 0;
+}
+/* Бренд: NEKKUS сверху, название модуля (HUB/NET/EYE) снизу */
+.nekkus-app-header__brand {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
+}
+.nekkus-app-header__logo {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  line-height: 1;
+}
+.nekkus-app-header__eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: 11px;
+  color: var(--text-secondary);
+  margin: 0 0 6px;
+}
+.nekkus-app-header__title {
+  margin: 0;
+  font-size: 22px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: var(--text-primary);
+  line-height: 1.2;
+}
+.nekkus-app-header__brand .nekkus-app-header__title {
+  font-size: 26px;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+}
+.nekkus-app-header__desc {
+  margin: 6px 0 0;
+  font-size: 13px;
+  color: var(--text-secondary);
+  line-height: 1.4;
+  max-width: 480px;
+}
+/* Статы и кнопки — в стороне, не привлекают внимания */
+.nekkus-app-header__meta {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-self: flex-end;
+  opacity: 0.75;
+}
+@media (max-width: 640px) {
+  .nekkus-app-header {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .nekkus-app-header__title {
+    font-size: 20px;
+  }
+}
 @keyframes nekkus-header-shimmer {
   0%, 100% { background-position: -200% 0; }
   50% { background-position: 200% 0; }
+}
+
+/* AppShell: каркас модуля (хедер + контент) */
+.nekkus-app-shell {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  min-width: 0;
+}
+.nekkus-app-shell__content {
+  flex: 1;
+  min-width: 0;
+  padding-top: 8px;
 }
 
 /* Modal / overlay (glassmorphism) */
