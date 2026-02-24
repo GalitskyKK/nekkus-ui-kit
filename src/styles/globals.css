@@ -14,6 +14,13 @@
   --bg-hover: #232340;
   --bg-input: #0D0D14;
 
+  /* Glass (прозрачное стекло с блюром) */
+  --glass-bg: rgba(10, 10, 15, 0.72);
+  --glass-bg-card: rgba(18, 18, 26, 0.65);
+  --glass-border: rgba(255, 255, 255, 0.06);
+  --glass-blur: 16px;
+  --glass-blur-card: 12px;
+
   --border: #1E1E2E;
   --border-hover: #2E2E4E;
   --border-active: rgba(59, 130, 246, 0.4);
@@ -67,6 +74,9 @@
    BASE
    ============================ */
 @layer base {
+  body.nekkus-glass-body {
+    background: #050508;
+  }
   [data-nekkus-root],
   .nekkus-theme {
     font-family: var(--font-ui);
@@ -76,6 +86,12 @@
     background-color: var(--bg-root);
     font-size: 14px;
     line-height: 1.5;
+  }
+  [data-nekkus-root].nekkus-glass-root,
+  .nekkus-theme.nekkus-glass-root {
+    background: var(--glass-bg);
+    -webkit-backdrop-filter: blur(var(--glass-blur));
+    backdrop-filter: blur(var(--glass-blur));
   }
 }
 
@@ -119,6 +135,12 @@ body::before {
   padding: 20px;
   box-shadow: var(--inner-highlight);
   transition: all var(--transition-normal);
+}
+[data-nekkus-card].nekkus-glass-card {
+  background: var(--glass-bg-card);
+  border-color: var(--glass-border);
+  -webkit-backdrop-filter: blur(var(--glass-blur-card));
+  backdrop-filter: blur(var(--glass-blur-card));
 }
 [data-nekkus-card] > * {
   position: relative;
@@ -409,7 +431,56 @@ body::before {
   );
 }
 
-/* App header with animated gradient line */
+/* App header: единый стиль для Hub, Net, Eye */
+.nekkus-app-header {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 20px;
+  padding-bottom: 16px;
+  margin-bottom: 8px;
+}
+.nekkus-app-header__main {
+  min-width: 0;
+}
+.nekkus-app-header__eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: 11px;
+  color: var(--text-secondary);
+  margin: 0 0 6px;
+}
+.nekkus-app-header__title {
+  margin: 0;
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--text-primary);
+  line-height: 1.2;
+}
+.nekkus-app-header__desc {
+  margin: 6px 0 0;
+  font-size: 13px;
+  color: var(--text-secondary);
+  line-height: 1.4;
+  max-width: 480px;
+}
+.nekkus-app-header__meta {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+@media (max-width: 640px) {
+  .nekkus-app-header {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .nekkus-app-header__title {
+    font-size: 20px;
+  }
+}
 .nekkus-app-header::after {
   content: '';
   position: absolute;
@@ -427,7 +498,7 @@ body::before {
   );
   background-size: 200% 100%;
   animation: nekkus-header-shimmer 8s ease-in-out infinite;
-  opacity: 0.6;
+  opacity: 0.5;
 }
 @keyframes nekkus-header-shimmer {
   0%, 100% { background-position: -200% 0; }
