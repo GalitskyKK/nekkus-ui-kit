@@ -528,4 +528,4 @@ export {
   oe as StatusDot,
   fe as theme
 };
-//# sourceMappingURL=nekkus-ui-kit.js.map
+//# sourceMappingURL=index.js.map

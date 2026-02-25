@@ -17,7 +17,7 @@ export default defineConfig({
       entry: path.resolve(__dirname, "src/index.ts"),
       name: "NekkusUiKit",
       fileName: (format) =>
-        format === "es" ? "nekkus-ui-kit.js" : "nekkus-ui-kit.umd.cjs",
+        format === "es" ? "index.js" : "index.umd.cjs",
       formats: ["es", "umd"],
     },
     rollupOptions: {
