@@ -35,5 +35,7 @@ export { Pill } from './components/Pill';
 export type { PillProps, PillVariant } from './components/Pill';
 export { DataText } from './components/DataText';
 export type { DataTextProps } from './components/DataText';
+export { ProgressBar, getProgressBarColor } from './components/ProgressBar';
+export type { ProgressBarProps } from './components/ProgressBar';
 export { theme } from './styles/theme';
 export type { Theme } from './styles/theme';

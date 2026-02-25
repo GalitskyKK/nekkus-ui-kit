@@ -1,6 +1,6 @@
 import { jsxs as r, jsx as s, Fragment as A } from "react/jsx-runtime";
 import { useId as j } from "react";
-const L = "inline-flex items-center justify-center gap-2 disabled:cursor-not-allowed", ee = ({
+const L = "inline-flex items-center justify-center gap-2 disabled:cursor-not-allowed", se = ({
   variant: e = "primary",
   size: t = "md",
   children: n,
@@ -24,7 +24,7 @@ const L = "inline-flex items-center justify-center gap-2 disabled:cursor-not-all
     ]
   }
 ), D = "text-nekkus-card font-semibold text-nekkus-text mb-3";
-function S(e) {
+function P(e) {
   if (e === !0) return "net";
   if (!(e === !1 || e == null))
     return e;
@@ -37,31 +37,31 @@ const H = ({
   heroModule: l,
   moduleGlow: d,
   className: o = "",
-  ...u
+  ...c
 }) => {
-  const g = S(n);
+  const p = P(n);
   return /* @__PURE__ */ r(
     "div",
     {
       "data-nekkus-card": !0,
-      "data-accent-top": g ?? void 0,
+      "data-accent-top": p ?? void 0,
       "data-elevated": a === "elevated" ? "" : void 0,
       "data-hero": a === "hero" ? "" : void 0,
       "data-hero-module": a === "hero" && l ? l : void 0,
       "data-module-glow": d ?? void 0,
       className: o.trim(),
-      ...u,
+      ...c,
       children: [
         t ? /* @__PURE__ */ s("div", { className: D, children: t }) : null,
         e
       ]
     }
   );
-}, P = {
+}, S = {
   small: "Маленький",
   medium: "Средний",
   large: "Большой"
-}, te = ({
+}, ne = ({
   size: e,
   title: t,
   description: n,
@@ -69,19 +69,19 @@ const H = ({
   running: l,
   accentTop: d,
   children: o,
-  onSizeChange: u,
-  headerActions: g,
-  configPanel: p,
-  footer: c,
+  onSizeChange: c,
+  headerActions: p,
+  configPanel: h,
+  footer: u,
   onDragStart: m,
   onDragEnd: $,
   onDragOver: b,
-  onDrop: f,
-  dragging: y,
-  className: _ = "",
-  style: C
+  onDrop: g,
+  dragging: _,
+  className: y = "",
+  style: w
 }) => {
-  const N = !!a, w = /* @__PURE__ */ r(
+  const N = !!a, C = /* @__PURE__ */ r(
     "div",
     {
       className: "nekkus-module-card__drag",
@@ -99,42 +99,42 @@ const H = ({
     H,
     {
       accentTop: N ? void 0 : d,
-      className: `nekkus-module-card nekkus-module-card--${e} nekkus-glass-card ${N ? "nekkus-module-card-border" : ""} ${y ? "nekkus-module-card--dragging" : ""} ${_}`.trim(),
+      className: `nekkus-module-card nekkus-module-card--${e} nekkus-glass-card ${N ? "nekkus-module-card-border" : ""} ${_ ? "nekkus-module-card--dragging" : ""} ${y}`.trim(),
       "data-module": a,
       "data-running": N && l ? "true" : void 0,
-      style: C,
+      style: w,
       onDragOver: b,
-      onDrop: f,
+      onDrop: g,
       children: [
         /* @__PURE__ */ r("header", { className: "nekkus-module-card__header", children: [
-          w,
+          C,
           /* @__PURE__ */ r("div", { className: "nekkus-module-card__header-actions", children: [
-            u ? /* @__PURE__ */ s("span", { className: "nekkus-module-card__size-btns", onClick: (k) => k.stopPropagation(), children: ["small", "medium", "large"].map((k) => /* @__PURE__ */ s(
+            c ? /* @__PURE__ */ s("span", { className: "nekkus-module-card__size-btns", onClick: (k) => k.stopPropagation(), children: ["small", "medium", "large"].map((k) => /* @__PURE__ */ s(
               "button",
               {
                 type: "button",
                 className: `nekkus-module-card__size-btn ${e === k ? "nekkus-module-card__size-btn--active" : ""}`,
-                onClick: () => u(k),
-                title: P[k],
+                onClick: () => c(k),
+                title: S[k],
                 "aria-pressed": e === k,
                 children: k === "small" ? "S" : k === "medium" ? "M" : "L"
               },
               k
             )) }) : null,
-            g
+            p
           ] })
         ] }),
-        p ? /* @__PURE__ */ s("div", { className: "nekkus-module-card__config", role: "dialog", "aria-label": "Настройки отображения", children: p }) : null,
+        h ? /* @__PURE__ */ s("div", { className: "nekkus-module-card__config", role: "dialog", "aria-label": "Настройки отображения", children: h }) : null,
         /* @__PURE__ */ s("div", { className: "nekkus-module-card__body", children: o }),
-        c ? /* @__PURE__ */ s("div", { className: "nekkus-module-card__footer", children: c }) : null
+        u ? /* @__PURE__ */ s("div", { className: "nekkus-module-card__footer", children: u }) : null
       ]
     }
   );
-}, se = ({
+}, ae = ({
   children: e,
   className: t = "",
   style: n
-}) => /* @__PURE__ */ s("div", { className: `nekkus-module-card-grid ${t}`.trim(), style: n, children: e }), ne = ({
+}) => /* @__PURE__ */ s("div", { className: `nekkus-module-card-grid ${t}`.trim(), style: n, children: e }), re = ({
   onClick: e,
   disabled: t = !1,
   empty: n = !1,
@@ -153,11 +153,11 @@ const H = ({
       l ?? "Добавить модуль"
     ]
   }
-), ae = ({
+), le = ({
   children: e,
   className: t = "",
   style: n
-}) => /* @__PURE__ */ s("p", { className: `nekkus-empty-state ${t}`.trim(), style: n, children: e }), re = ({
+}) => /* @__PURE__ */ s("p", { className: `nekkus-empty-state ${t}`.trim(), style: n, children: e }), de = ({
   label: e,
   value: t,
   className: n = "",
@@ -165,7 +165,7 @@ const H = ({
 }) => /* @__PURE__ */ r("div", { className: `nekkus-header-stat ${n}`.trim(), style: a, children: [
   /* @__PURE__ */ s("span", { children: e }),
   /* @__PURE__ */ s("strong", { children: t })
-] }), le = ({
+] }), oe = ({
   value: e,
   label: t,
   className: n = "",
@@ -173,7 +173,7 @@ const H = ({
 }) => /* @__PURE__ */ r("div", { className: `${n}`.trim(), ...a, children: [
   /* @__PURE__ */ s("div", { className: "nekkus-metric-hero", children: e }),
   t != null && /* @__PURE__ */ s("div", { className: "nekkus-metric-label", children: t })
-] }), de = ({ className: e = "", ...t }) => /* @__PURE__ */ s("hr", { className: `nekkus-divider ${e}`.trim(), ...t }), oe = ({
+] }), ie = ({ className: e = "", ...t }) => /* @__PURE__ */ s("hr", { className: `nekkus-divider ${e}`.trim(), ...t }), ce = ({
   status: e,
   label: t,
   size: n = 8,
@@ -189,7 +189,7 @@ const H = ({
     }
   ),
   t != null && /* @__PURE__ */ s("span", { className: "text-nekkus-sm font-medium text-nekkus-text-muted font-mono", children: t })
-] }), G = "min-h-screen bg-nekkus-layer-0 text-nekkus-text p-6 md:p-8 box-border font-sans", ie = ({
+] }), G = "min-h-screen bg-nekkus-layer-0 text-nekkus-text p-6 md:p-8 box-border font-sans", ue = ({
   children: e,
   className: t = "",
   style: n
@@ -201,7 +201,7 @@ const H = ({
     "data-nekkus-root": !0,
     children: e
   }
-), W = "text-nekkus-card font-semibold text-nekkus-text mb-3", ce = ({
+), W = "text-nekkus-card font-semibold text-nekkus-text mb-3", me = ({
   children: e,
   title: t,
   className: n = "",
@@ -209,7 +209,7 @@ const H = ({
 }) => /* @__PURE__ */ r("section", { className: `mb-8 ${n}`.trim(), ...a, children: [
   t ? /* @__PURE__ */ s("h2", { className: W, children: t }) : null,
   e
-] }), ue = ({
+] }), ke = ({
   logo: e,
   eyebrow: t,
   title: n,
@@ -217,8 +217,8 @@ const H = ({
   meta: l,
   children: d,
   className: o = "",
-  style: u
-}) => /* @__PURE__ */ r("div", { className: `nekkus-app-shell ${o}`.trim(), style: u, children: [
+  style: c
+}) => /* @__PURE__ */ r("div", { className: `nekkus-app-shell ${o}`.trim(), style: c, children: [
   /* @__PURE__ */ r("header", { className: "nekkus-app-header", children: [
     /* @__PURE__ */ r("div", { className: "nekkus-app-header__main", children: [
       e ? /* @__PURE__ */ r("div", { className: "nekkus-app-header__brand", children: [
@@ -233,7 +233,7 @@ const H = ({
     l ? /* @__PURE__ */ s("div", { className: "nekkus-app-header__meta", children: l }) : null
   ] }),
   /* @__PURE__ */ s("div", { className: "nekkus-app-shell__content", children: d })
-] }), I = "w-full min-w-[4px] rounded-t-[4px] bg-nekkus-accent/80 hover:bg-nekkus-accent transition-[height] duration-300", O = "text-[10px] font-medium text-nekkus-text-dim font-mono truncate max-w-full", me = ({
+] }), I = "w-full min-w-[4px] rounded-t-[4px] bg-nekkus-accent/80 hover:bg-nekkus-accent transition-[height] duration-300", O = "text-[10px] font-medium text-nekkus-text-dim font-mono truncate max-w-full", pe = ({
   data: e,
   labels: t,
   height: n = 120,
@@ -242,11 +242,11 @@ const H = ({
   valueSuffix: d = "",
   maxValue: o
 }) => {
-  const u = e.length > 0 ? e : [0], g = Math.max(...u, 1), p = o ?? g;
+  const c = e.length > 0 ? e : [0], p = Math.max(...c, 1), h = o ?? p;
   return /* @__PURE__ */ r("div", { className: "chart-wrap flex gap-0.5 font-mono", children: [
     /* @__PURE__ */ r("div", { className: "chart-y-axis flex flex-col justify-between text-[10px] text-nekkus-text-dim font-mono pr-2 shrink-0", style: { height: n }, children: [
       /* @__PURE__ */ r("span", { children: [
-        p <= 1 ? "1" : Math.round(p),
+        h <= 1 ? "1" : Math.round(h),
         d
       ] }),
       /* @__PURE__ */ r("span", { children: [
@@ -259,7 +259,7 @@ const H = ({
       {
         className: "flex items-end flex-1 gap-0.5 min-h-0",
         style: { height: n },
-        children: u.map((c, m) => /* @__PURE__ */ r(
+        children: c.map((u, m) => /* @__PURE__ */ r(
           "div",
           {
             className: "flex-1 flex flex-col items-center justify-end gap-1 min-w-0 h-full",
@@ -270,12 +270,12 @@ const H = ({
                 {
                   className: `${I} shrink-0`,
                   style: {
-                    height: c === 0 ? 0 : `${Math.max(c / p * 100, 2)}%`,
+                    height: u === 0 ? 0 : `${Math.max(u / h * 100, 2)}%`,
                     ...a != null ? { backgroundColor: a } : {}
                   }
                 }
               ),
-              ((t == null ? void 0 : t[m]) != null || l) && /* @__PURE__ */ s("span", { className: O, title: String(c), children: (t == null ? void 0 : t[m]) ?? (l ? `${Number(c).toFixed(c % 1 === 0 ? 0 : 1)}${d}` : null) })
+              ((t == null ? void 0 : t[m]) != null || l) && /* @__PURE__ */ s("span", { className: O, title: String(u), children: (t == null ? void 0 : t[m]) ?? (l ? `${Number(u).toFixed(u % 1 === 0 ? 0 : 1)}${d}` : null) })
             ]
           },
           m
@@ -283,7 +283,7 @@ const H = ({
       }
     )
   ] });
-}, B = "rgba(148, 163, 184, 0.2)", i = { top: 4, right: 12, bottom: 16, left: 32 }, ke = ({
+}, B = "rgba(148, 163, 184, 0.2)", i = { top: 4, right: 12, bottom: 16, left: 32 }, he = ({
   data: e,
   height: t = 160,
   color: n = "#3b82f6",
@@ -291,20 +291,20 @@ const H = ({
   valueSuffix: l = "%",
   yLabel: d,
   xLabel: o,
-  timeRangeLabel: u
+  timeRangeLabel: c
 }) => {
-  const g = j().replace(/:/g, ""), p = e.length > 0 ? e : [0], c = a ?? Math.max(...p, 1), m = 600, $ = m - i.left - i.right, b = t - i.top - i.bottom, f = p.length, y = f > 1 ? $ / (f - 1) : 0, _ = (h) => i.left + h * y, C = (h) => {
-    const x = Math.min(c, Math.max(0, h));
-    return i.top + b - x / c * b;
-  }, N = p.map((h, x) => `${_(x)},${C(h)}`).join(" "), w = f > 0 ? `M ${i.left},${i.top + b} L ${N} L ${_(f - 1)},${i.top + b} Z` : "", k = f > 0 ? `M ${N.split(" ").join(" L ")}` : "", F = 5, E = Array.from({ length: F + 1 }, (h, x) => {
-    const v = i.top + b * x / F, M = c - c * x / F;
+  const p = j().replace(/:/g, ""), h = e.length > 0 ? e : [0], u = a ?? Math.max(...h, 1), m = 600, $ = m - i.left - i.right, b = t - i.top - i.bottom, g = h.length, _ = g > 1 ? $ / (g - 1) : 0, y = (x) => i.left + x * _, w = (x) => {
+    const f = Math.min(u, Math.max(0, x));
+    return i.top + b - f / u * b;
+  }, N = h.map((x, f) => `${y(f)},${w(x)}`).join(" "), C = g > 0 ? `M ${i.left},${i.top + b} L ${N} L ${y(g - 1)},${i.top + b} Z` : "", k = g > 0 ? `M ${N.split(" ").join(" L ")}` : "", F = 5, E = Array.from({ length: F + 1 }, (x, f) => {
+    const v = i.top + b * f / F, M = u - u * f / F;
     return { y: v, val: M };
   });
   return /* @__PURE__ */ r("div", { className: "line-chart-wrap flex flex-col gap-1", children: [
     /* @__PURE__ */ r("div", { className: "flex justify-between items-baseline text-[10px] text-nekkus-text-dim font-mono", children: [
       d && /* @__PURE__ */ s("span", { children: d }),
       /* @__PURE__ */ r("span", { children: [
-        c,
+        u,
         l
       ] })
     ] }),
@@ -317,24 +317,24 @@ const H = ({
         className: "min-h-[120px] block",
         style: { height: t },
         children: [
-          /* @__PURE__ */ s("defs", { children: /* @__PURE__ */ r("linearGradient", { id: g, x1: "0", x2: "0", y1: "0", y2: "1", children: [
+          /* @__PURE__ */ s("defs", { children: /* @__PURE__ */ r("linearGradient", { id: p, x1: "0", x2: "0", y1: "0", y2: "1", children: [
             /* @__PURE__ */ s("stop", { offset: "0%", stopColor: n, stopOpacity: 0.35 }),
             /* @__PURE__ */ s("stop", { offset: "100%", stopColor: n, stopOpacity: 0.05 })
           ] }) }),
-          E.map(({ y: h, val: x }, v) => /* @__PURE__ */ s(
+          E.map(({ y: x, val: f }, v) => /* @__PURE__ */ s(
             "line",
             {
               x1: i.left,
-              y1: h,
+              y1: x,
               x2: m - i.right,
-              y2: h,
+              y2: x,
               stroke: B,
               strokeWidth: 1
             },
             v
           )),
-          f > 1 && Array.from({ length: 5 }, (h, x) => {
-            const v = i.left + $ * x / 4;
+          g > 1 && Array.from({ length: 5 }, (x, f) => {
+            const v = i.left + $ * f / 4;
             return /* @__PURE__ */ s(
               "line",
               {
@@ -345,10 +345,10 @@ const H = ({
                 stroke: B,
                 strokeWidth: 1
               },
-              x
+              f
             );
           }),
-          /* @__PURE__ */ s("path", { d: w, fill: `url(#${g})` }),
+          /* @__PURE__ */ s("path", { d: C, fill: `url(#${p})` }),
           /* @__PURE__ */ s(
             "path",
             {
@@ -365,10 +365,10 @@ const H = ({
     ),
     /* @__PURE__ */ r("div", { className: "flex justify-between text-[10px] text-nekkus-text-dim font-mono", children: [
       o && /* @__PURE__ */ s("span", { children: o }),
-      u && /* @__PURE__ */ s("span", { children: "0" })
+      c && /* @__PURE__ */ s("span", { children: "0" })
     ] })
   ] });
-}, R = "w-full bg-nekkus-layer-0 border border-nekkus-border rounded-nekkus-lg px-3.5 py-2.5 text-nekkus-base text-nekkus-text font-sans placeholder:text-nekkus-text-dim box-border transition-[border-color,box-shadow] duration-150", T = "flex flex-col gap-1 w-full", U = "text-nekkus-sm font-medium text-nekkus-text-muted", pe = ({
+}, R = "w-full bg-nekkus-layer-0 border border-nekkus-border rounded-nekkus-lg px-3.5 py-2.5 text-nekkus-base text-nekkus-text font-sans placeholder:text-nekkus-text-dim box-border transition-[border-color,box-shadow] duration-150", T = "flex flex-col gap-1 w-full", U = "text-nekkus-sm font-medium text-nekkus-text-muted", xe = ({
   label: e,
   className: t = "",
   id: n,
@@ -387,7 +387,7 @@ const H = ({
       }
     )
   ] });
-}, X = "w-full bg-nekkus-layer-0 border border-nekkus-border rounded-nekkus-lg px-3.5 py-2.5 text-nekkus-base text-nekkus-text font-sans cursor-pointer box-border transition-[border-color,box-shadow] duration-150", Y = "flex flex-col gap-1 w-full", Z = "text-nekkus-sm font-medium text-nekkus-text-muted", he = ({
+}, X = "w-full bg-nekkus-layer-0 border border-nekkus-border rounded-nekkus-lg px-3.5 py-2.5 text-nekkus-base text-nekkus-text font-sans cursor-pointer box-border transition-[border-color,box-shadow] duration-150", Y = "flex flex-col gap-1 w-full", Z = "text-nekkus-sm font-medium text-nekkus-text-muted", fe = ({
   label: e,
   options: t,
   className: n = "",
@@ -414,7 +414,7 @@ const H = ({
   warning: "bg-nekkus-warning/15 text-nekkus-warning",
   error: "bg-nekkus-error/15 text-nekkus-error",
   info: "bg-nekkus-info/15 text-nekkus-info"
-}, J = "inline-flex items-center px-2 py-0.5 text-nekkus-xs font-medium rounded-nekkus-sm font-sans", xe = ({
+}, J = "inline-flex items-center px-2 py-0.5 text-nekkus-xs font-medium rounded-nekkus-sm font-sans", ge = ({
   children: e,
   variant: t = "default",
   className: n = "",
@@ -430,7 +430,7 @@ const H = ({
   sm: "text-nekkus-sm font-medium",
   base: "text-nekkus-base font-medium",
   metric: "text-nekkus-metric font-bold"
-}, K = "font-mono text-nekkus-text tracking-tight", ge = ({
+}, K = "font-mono text-nekkus-text tracking-tight", be = ({
   children: e,
   as: t = "span",
   size: n = "base",
@@ -443,7 +443,44 @@ const H = ({
     ...l,
     children: e
   }
-), fe = {
+);
+function Q(e) {
+  return e >= 80 ? "#EF4444" : e >= 60 ? "#F59E0B" : "#10B981";
+}
+const V = 8, Ne = ({
+  label: e,
+  value: t,
+  extra: n,
+  height: a = V,
+  max: l = 100,
+  className: d = ""
+}) => {
+  const o = Math.min(l, Math.max(0, t)), c = l > 0 ? o / l * 100 : 0, p = Q(c);
+  return /* @__PURE__ */ r("div", { className: `flex flex-col gap-1 ${d}`.trim(), role: "progressbar", "aria-valuenow": o, "aria-valuemin": 0, "aria-valuemax": l, "aria-label": e, children: [
+    /* @__PURE__ */ r("div", { className: "flex items-center justify-between gap-2", children: [
+      /* @__PURE__ */ s("span", { className: "text-nekkus-sm text-nekkus-text-muted", children: e }),
+      /* @__PURE__ */ r("span", { className: "text-nekkus-sm font-medium tabular-nums text-nekkus-text", children: [
+        t.toFixed(1),
+        "%",
+        n ? /* @__PURE__ */ s("span", { className: "ml-1.5 text-nekkus-text-dim font-normal", children: n }) : null
+      ] })
+    ] }),
+    /* @__PURE__ */ s(
+      "div",
+      {
+        className: "w-full rounded-full overflow-hidden bg-nekkus-layer-2",
+        style: { height: `${a}px` },
+        children: /* @__PURE__ */ s(
+          "div",
+          {
+            className: "h-full rounded-full transition-all duration-200 ease-out",
+            style: { width: `${c}%`, backgroundColor: p }
+          }
+        )
+      }
+    )
+  ] });
+}, ve = {
   layers: {
     0: "#0A0A0F",
     1: "#12121A",
@@ -507,25 +544,27 @@ const H = ({
   transition: { fast: "150ms ease", normal: "200ms ease", slow: "300ms ease" }
 };
 export {
-  ne as AddModulePlaceholder,
-  ue as AppShell,
-  ee as Button,
+  re as AddModulePlaceholder,
+  ke as AppShell,
+  se as Button,
   H as Card,
-  me as Chart,
-  ge as DataText,
-  de as Divider,
-  ae as EmptyState,
-  re as HeaderStat,
-  pe as Input,
-  ke as LineChart,
-  le as MetricHero,
-  te as ModuleCard,
-  se as ModuleCardGrid,
-  ie as PageLayout,
-  xe as Pill,
-  ce as Section,
-  he as Select,
-  oe as StatusDot,
-  fe as theme
+  pe as Chart,
+  be as DataText,
+  ie as Divider,
+  le as EmptyState,
+  de as HeaderStat,
+  xe as Input,
+  he as LineChart,
+  oe as MetricHero,
+  ne as ModuleCard,
+  ae as ModuleCardGrid,
+  ue as PageLayout,
+  ge as Pill,
+  Ne as ProgressBar,
+  me as Section,
+  fe as Select,
+  ce as StatusDot,
+  Q as getProgressBarColor,
+  ve as theme
 };
 //# sourceMappingURL=index.js.map
